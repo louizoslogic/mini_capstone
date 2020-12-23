@@ -1,4 +1,6 @@
 import pickle
+from datetime import datetime
+
 class atm:
 
     def __init__(self, user):
@@ -19,7 +21,9 @@ class atm:
     def deposit(self, amount):
 
         self.balance = self.balance + amount
-        newtransaction = f'{self.user} deposited ${amount}: Total ${self.balance}'
+        now = datetime.now()
+        dt_string = now.strftime("%d/%m/%Y %H:%M")
+        newtransaction = f'{dt_string}: {self.user} deposited ${amount}: Total ${self.balance}'
         self.transaction = self.transaction + newtransaction + '\n'
         return newtransaction
     
@@ -35,7 +39,9 @@ class atm:
 
         if self.check_withdraw(amount) ==  True:
             self.balance = self.balance - amount
-            newtransaction = f'{self.user} withdrew ${amount}: Total ${self.balance}'
+            now = datetime.now()
+            dt_string = now.strftime("%d/%m/%Y %H:%M")
+            newtransaction = f'{dt_string}: {self.user} withdrew ${amount}: Total ${self.balance}'
             self.transaction = self.transaction + newtransaction + '\n'
             newtransaction
     
